@@ -1,22 +1,54 @@
 import { Building2, Logs, X } from 'lucide-react';
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router';
+import React, { useContext, useState } from 'react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router';
+import { AuthContext } from '../../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const [menu,setMenu]= useState(false)
+  const { user, singOutUser } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(user)
    const link = (
      <>
-       <NavLink to="/home">
+       <NavLink to="/">
          <li>Home</li>
        </NavLink>
-       <NavLink to="/employee-Login">
-         <li>Join as Employee</li>
-       </NavLink>
-       <NavLink to="/HR-Manager-Login">
-         <li>Join as HR Manager</li>
-       </NavLink>
+       {!user && (
+         <>
+           <NavLink to="/employee-Login">
+             <li>Join as Employee</li>
+           </NavLink>
+           <NavLink to="/HR-Manager-Login">
+             <li>Join as HR Manager</li>
+           </NavLink>
+         </>
+       )}
      </>
    );
+
+
+   const handleLogOut=()=>{
+    singOutUser()
+      .then((res) => {
+        if (res) {
+          Swal.fire({
+            title: "Logged Out Successfully",
+            icon: "success",
+            timer: 2000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+          });
+          navigate(location.state || "/");
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          Swal.fire("Something Went Wrong");
+        }
+      });
+   }
    
 
     return (
@@ -67,16 +99,18 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
                 <li>
-                  <a className="justify-between">
+                  <a className="justify-between text-lg font-medium">
                     Profile
                     <span className="badge">New</span>
                   </a>
                 </li>
                 <li>
-                  <a>Settings</a>
+                  <a className=" text-lg font-medium">Settings</a>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <Link onClick={handleLogOut} className=" text-lg font-medium" to="/">
+                    Logout
+                  </Link>
                 </li>
               </ul>
             </div>

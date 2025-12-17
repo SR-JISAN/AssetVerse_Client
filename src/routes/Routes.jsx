@@ -4,6 +4,7 @@ import Root from '../Root/Root';
 import EmployeeLogin from '../pages/LogIn/EmployeeLogin';
 import HrManagerLogin from '../pages/LogIn/HrManagerLogin';
 import Register from '../pages/Register/Register';
+import Home from '../pages/Home/Home';
 
 
 
@@ -15,8 +16,8 @@ import Register from '../pages/Register/Register';
        children: [
          {
            index: true,
-           path: "/home",
-           element: <h1>home</h1>,
+           path: "/",
+           element: <Home></Home>,
          },
          {
            path: "/employee-Login",

@@ -52,7 +52,7 @@ const Register = () => {
             showConfirmButton: false,
           });
 
-          navigate(location.state || "/home");
+          navigate(location.state || "/");
         }
       })
       .catch((err) => {

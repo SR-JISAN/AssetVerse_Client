@@ -28,7 +28,7 @@ const EmployeeLogin = () => {
               timerProgressBar: true,
               showConfirmButton: false,
             });
-            navigate(location.state || "/home");
+            navigate(location.state || "/");
           }
         })
         .catch((err) => {
