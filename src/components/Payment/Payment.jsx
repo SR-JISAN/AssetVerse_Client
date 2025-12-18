@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 const Payment = () => {
@@ -84,7 +85,7 @@ const Payment = () => {
                     ))}
                   </ul>
 
-                  <button className="mt-auto bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                  <button className="mt-auto btn  bg-linear-to-r from-blue-900 to-blue-600 text-white py-6 rounded-lg font-semibold transition-colors">
                     Get Started
                   </button>
                 </motion.div>

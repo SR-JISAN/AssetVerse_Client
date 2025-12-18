@@ -5,6 +5,10 @@ import EmployeeLogin from '../pages/LogIn/EmployeeLogin';
 import HrManagerLogin from '../pages/LogIn/HrManagerLogin';
 import Register from '../pages/Register/Register';
 import Home from '../pages/Home/Home';
+import NFPage from '../pages/ErrorPage/NFPage';
+import EmployeeManagement from '../components/EmployeeManagement/EmployeeManagement';
+import AssetList from '../pages/AssetList/AssetList';
+import AddAsset from '../pages/AddAsset/AddAsset';
 
 
 
@@ -13,17 +17,29 @@ import Home from '../pages/Home/Home';
      {
        path: "/",
        element: <Root></Root>,
+       errorElement: <NFPage></NFPage>,
        children: [
          {
            index: true,
-           path: "/",
            element: <Home></Home>,
          },
          {
            path: "/employee-Login",
            element: <EmployeeLogin></EmployeeLogin>,
          },
-         
+         {
+           path: "/asset-list",
+           element: <AssetList></AssetList>,
+         },
+         {
+           path: "/add-asset",
+           element: <AddAsset></AddAsset>,
+         },
+         {
+           path: "/employee-management",
+           element: <EmployeeManagement></EmployeeManagement>,
+         },
+
          {
            path: "/HR-Manager-Login",
            element: <HrManagerLogin></HrManagerLogin>,

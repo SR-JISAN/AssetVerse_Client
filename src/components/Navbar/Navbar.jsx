@@ -15,6 +15,15 @@ const Navbar = () => {
        <NavLink to="/">
          <li>Home</li>
        </NavLink>
+       <NavLink to="/asset-list">
+         <li> Asset List</li>
+       </NavLink>
+       <NavLink to="/add-asset">
+         <li>Add Asset </li>
+       </NavLink>
+       <NavLink to="/employee-management">
+         <li>Employee Management</li>
+       </NavLink>
        {!user && (
          <>
            <NavLink to="/employee-Login">

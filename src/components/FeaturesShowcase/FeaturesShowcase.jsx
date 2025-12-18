@@ -1,38 +1,39 @@
 import React, { useRef } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "framer-motion";
 import { Users, Shield, BarChart2, Cpu, Settings, Bell } from "lucide-react";
 
 const features = [
   {
-    icon: <Users className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <Users size={40} color="#155dfc" className="mb-6"/>,
     title: "Team Collaboration",
     description: "Easily manage and share assets across your entire team.",
   },
   {
-    icon: <Shield className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <Shield size={40} color="#155dfc" className="mb-6" />,
     title: "Top Security",
     description:
       "Your data is protected with enterprise-grade security protocols.",
   },
   {
-    icon: <BarChart2 className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <BarChart2 size={40} color="#155dfc" className="mb-6" />,
     title: "Advanced Analytics",
     description: "Gain insights from asset usage and performance data.",
   },
   {
-    icon: <Cpu className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <Cpu size={40} color="#155dfc" className="mb-6" />,
     title: "Smart Automation",
     description: "Automate repetitive tasks to save time and reduce errors.",
   },
   {
-    icon: <Settings className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <Settings size={40} color="#155dfc" className="mb-6" />,
     title: "Customizable",
     description:
       "Tailor AssetVerse to match your team’s workflow and branding.",
   },
   {
-    icon: <Bell className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <Bell size={40} color="#155dfc" className="mb-6" />,
     title: "Real-time Notifications",
     description: "Stay updated with alerts for key asset activities.",
   },
@@ -52,7 +53,7 @@ const FeaturesShowcase = () => {
        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
      };
   return (
-    <div>
+    <div className="mw">
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <motion.h2
@@ -76,7 +77,7 @@ const FeaturesShowcase = () => {
             efficient, secure, and collaborative.
           </motion.p>
 
-          {/* Features Grid */}
+       
           <div
             ref={ref}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"

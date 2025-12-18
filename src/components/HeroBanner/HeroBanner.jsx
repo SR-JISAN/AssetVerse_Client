@@ -1,10 +1,10 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import bannerImg from "../../assets/banner.avif"
 
 const HeroBanner = () => {
     return (
-      
       <div>
         <section className="relative w-full h-screen bg-gray-100">
           <div className="absolute inset-0">
@@ -36,7 +36,7 @@ const HeroBanner = () => {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold text-lg shadow-lg"
+              className="bg-linear-to-r from-blue-900 to-blue-600 btn px-6 py-6 border-0 text-white rounded-lg font-semibold text-lg shadow-lg"
             >
               Get Started
             </motion.button>

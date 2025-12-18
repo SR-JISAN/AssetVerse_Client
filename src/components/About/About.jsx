@@ -1,28 +1,29 @@
 import React from 'react';
 import { Rocket, Shield, Users, BarChart2 } from "lucide-react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 const benefits = [
   {
-    icon: <Rocket className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <Rocket size={40} color="#155dfc" className="mb-6" />,
     title: "Fast & Efficient",
     description:
       "Streamline your asset management and save valuable time with AssetVerse.",
   },
   {
-    icon: <Shield className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <Shield size={40} color="#155dfc" className="mb-6" />,
     title: "Secure & Reliable",
     description:
       "Your data is protected with top-notch security standards and reliable storage.",
   },
   {
-    icon: <Users className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <Users size={40} color="#155dfc" className="mb-6" />,
     title: "Collaborative",
     description:
       "Easily manage and share assets across your team with full control.",
   },
   {
-    icon: <BarChart2 className="w-10 h-10 text-blue-600 mb-4" />,
+    icon: <BarChart2 size={40} color="#155dfc" className="mb-6" />,
     title: "Data-Driven Insights",
     description:
       "Gain actionable insights with analytics and reporting features.",
