@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mail, Phone, Linkedin, Twitter, Facebook } from "lucide-react";
+import { Mail, Phone, Linkedin,  Facebook, X, Youtube } from "lucide-react";
+import { Link } from 'react-router';
 
 const Footer = () => {
     return (
@@ -29,7 +30,6 @@ const Footer = () => {
             </ul>
           </div>
 
-        
           <div>
             <h4 className="font-semibold mb-4 text-white">Follow Us</h4>
             <div className="flex space-x-4">
@@ -37,22 +37,25 @@ const Footer = () => {
                 <Linkedin className="w-6 h-6" />
               </a>
               <a href="#" className="hover:text-blue-400 transition-colors">
-                <Twitter className="w-6 h-6" />
+                <X className="w-7 h-7" />
               </a>
               <a href="#" className="hover:text-blue-600 transition-colors">
                 <Facebook className="w-6 h-6" />
               </a>
+              <a href="#" className="hover:text-blue-600 transition-colors">
+                <Youtube className="w-7 h-7" />
+                
+              </a>
             </div>
           </div>
 
-        
           <div>
             <h4 className="font-semibold mb-4 text-white">Quick Links</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>
-                <a href="#hero" className="hover:text-white transition-colors">
+                <Link to="/" className="hover:text-white transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#about" className="hover:text-white transition-colors">
@@ -87,9 +90,8 @@ const Footer = () => {
           </div>
         </div>
 
-      
         <div className="mt-12 text-center text-gray-500 text-sm">
-         Thank's for Exploring  AssetVerse 
+          Thank's for Exploring AssetVerse
         </div>
       </footer>
     );

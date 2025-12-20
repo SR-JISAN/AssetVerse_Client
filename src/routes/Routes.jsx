@@ -10,6 +10,7 @@ import EmployeeManagement from '../components/EmployeeManagement/EmployeeManagem
 import AssetList from '../pages/AssetList/AssetList';
 import AddAsset from '../pages/AddAsset/AddAsset';
 import AllAssetRequest from '../pages/AllAssetRequest/AllAssetRequest';
+import PrivateRoute from '../PrivateRouters/PrivateRoute';
 
 
 
@@ -31,19 +32,19 @@ import AllAssetRequest from '../pages/AllAssetRequest/AllAssetRequest';
          },
          {
            path: "/asset-list",
-           element: <AssetList></AssetList>,
+           element: <PrivateRoute><AssetList></AssetList></PrivateRoute>,
          },
          {
            path: "/add-asset",
-           element: <AddAsset></AddAsset>,
+           element: <PrivateRoute><AddAsset></AddAsset></PrivateRoute>,
          },
          {
            path: "/all-asset-request",
-           element: <AllAssetRequest></AllAssetRequest>,
+           element: <PrivateRoute><AllAssetRequest></AllAssetRequest></PrivateRoute>,
          },
          {
            path: "/employee-management",
-           element: <EmployeeManagement></EmployeeManagement>,
+           element: <PrivateRoute><EmployeeManagement></EmployeeManagement></PrivateRoute>,
          },
          {
            path: "/employee-Login",

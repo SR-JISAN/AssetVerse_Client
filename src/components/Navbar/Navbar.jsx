@@ -9,7 +9,6 @@ const Navbar = () => {
   const { user, singOutUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
-  // console.log(user)
    const link = (
      <>
        <NavLink to="/">
@@ -52,7 +51,8 @@ const Navbar = () => {
             timerProgressBar: true,
             showConfirmButton: false,
           });
-          navigate(location.state || "/");
+          const from = location.state?.from?.pathname || "/";
+          navigate(from, { replace: true });
         }
       })
       .catch((err) => {
@@ -108,7 +108,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu  menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow"
               >
                 <li>
                   <a className="justify-between text-lg font-medium">
@@ -120,9 +120,9 @@ const Navbar = () => {
                   <a className=" text-lg font-medium">Settings</a>
                 </li>
                 <li>
-                  <Link onClick={handleLogOut} className=" text-lg font-medium" to="/">
+                  <button onClick={handleLogOut} className=" text-lg font-medium">
                     Logout
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>

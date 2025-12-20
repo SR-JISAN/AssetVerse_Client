@@ -12,11 +12,16 @@ import {
 import { GoogleAuthProvider } from "firebase/auth";
 import Loading from "../pages/Loading/Loading.jsx";
 import { auth } from "../firebase/firebase.init.js";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 
 function ContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+
+  
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -55,6 +60,14 @@ function ContextProvider({ children }) {
       unSubscribe();
     };
   }, []);
+  const { data: dbUser, isLoading: roleLoading } = useQuery({
+    queryKey: ["dbUser", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axios.get(`http://localhost:5000/users/${user.email}`);
+      return res.data;
+    },
+  });
 
   const authInfo = {
     createUser,
@@ -63,7 +76,8 @@ function ContextProvider({ children }) {
     singOutUser,
     updateUserProfile,
     user,
-    loading,
+    dbUser,   
+    loading: loading || roleLoading,
     setLoading,
   };
   return (
