@@ -9,6 +9,7 @@ import NFPage from '../pages/ErrorPage/NFPage';
 import EmployeeManagement from '../components/EmployeeManagement/EmployeeManagement';
 import AssetList from '../pages/AssetList/AssetList';
 import AddAsset from '../pages/AddAsset/AddAsset';
+import AllAssetRequest from '../pages/AllAssetRequest/AllAssetRequest';
 
 
 
@@ -23,9 +24,10 @@ import AddAsset from '../pages/AddAsset/AddAsset';
            index: true,
            element: <Home></Home>,
          },
+
          {
-           path: "/employee-Login",
-           element: <EmployeeLogin></EmployeeLogin>,
+           path: "/HR-Manager-Login",
+           element: <HrManagerLogin></HrManagerLogin>,
          },
          {
            path: "/asset-list",
@@ -36,13 +38,16 @@ import AddAsset from '../pages/AddAsset/AddAsset';
            element: <AddAsset></AddAsset>,
          },
          {
+           path: "/all-asset-request",
+           element: <AllAssetRequest></AllAssetRequest>,
+         },
+         {
            path: "/employee-management",
            element: <EmployeeManagement></EmployeeManagement>,
          },
-
          {
-           path: "/HR-Manager-Login",
-           element: <HrManagerLogin></HrManagerLogin>,
+           path: "/employee-Login",
+           element: <EmployeeLogin></EmployeeLogin>,
          },
          {
            path: "/register",

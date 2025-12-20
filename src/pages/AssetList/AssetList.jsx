@@ -10,15 +10,13 @@ import Swal from 'sweetalert2';
 
 
 const AssetList = () => {
-  
-   
-
-    const { register, control } = useForm({
+   const { register, control } = useForm({
       defaultValues: {
         search: "",
       },
     });
-      const searchAssets = useWatch({
+
+     const searchAssets = useWatch({
         control,
         name: "search",
       }).toLowerCase();
@@ -50,6 +48,29 @@ const AssetList = () => {
         },
       });
 
+      const assignedAssetsMutation = useMutation({
+        mutationFn: async (assetsData) => {
+          await axiosUrl.post("/assignedAssets", assetsData);
+        },
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["assets"] });
+          Swal.fire({
+            icon: "success",
+            title: "Assigned!",
+            text: "Asset has been Assigned.",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        },
+        onError: () => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Failed to Assign asset!",
+          });
+        },
+      });
+
 
     const { data: assetsData = [], isLoading } = useQuery({
       queryKey: ["assets"],
@@ -58,11 +79,9 @@ const AssetList = () => {
         return res.data;
       },
     });
-   
-
-console.log(assetsData)
-     if(isLoading){
-        return<Loading></Loading>
+  
+    if (isLoading) {
+      return <Loading></Loading>;
     }
 
     const filteredAssets = assetsData.filter(
@@ -86,21 +105,53 @@ console.log(assetsData)
 
        if (result.isConfirmed) {
          try {
-           await deleteMutation.mutateAsync(id); // <-- wait for it
+           await deleteMutation.mutateAsync(id); 
          } catch (err) {
            console.error(err);
          }
        }
      };
+  
+  const handleAssign = async (asset)=>{
+         const result = await Swal.fire({
+           title: "Are you sure?",
+           text: "You won't be able to revert this!",
+           icon: "warning",
+           showCancelButton: true,
+           confirmButtonColor: "#3085d6",
+           cancelButtonColor: "#d33",
+           confirmButtonText: "Yes, Assign!",
+         });
+        
+         if (!result.isConfirmed) return;
+
+  const assignedAssetData = {
+    assetId: asset._id,
+    assetName: asset.productName,
+    assetImage: asset.productImage,
+    assetType: asset.productType,
+
+    employeeEmail: "employee@email.com",
+    employeeName: "Employee Name",
+
+    hrEmail: asset.hrEmail,
+    companyName: asset.companyName,
+
+    assignmentDate: new Date(),
+    returnDate: null,
+    status: "assigned",
+  };
+
+  assignedAssetsMutation.mutate(assignedAssetData);
+};
+
 
     return (
       <div>
         <div className="p-6 bg-white rounded-2xl shadow-lg">
-          {/* Header */}
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-semibold">Asset List</h2>
 
-            {/* Search */}
             <div className="relative">
               <Search
                 className="absolute left-3 top-2.5 text-gray-400"
@@ -114,7 +165,6 @@ console.log(assetsData)
             </div>
           </div>
 
-          {/* Table */}
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
@@ -152,6 +202,14 @@ console.log(assetsData)
                     </td>
                     <td className="p-3">
                       <div className="flex justify-center gap-3">
+                        <button
+                          disabled={asset.availableQuantity === 0}
+                          onClick={() => handleAssign(asset)}
+                          className="bg-red-500 text-white px-2 py-1 rounded"
+                        >
+                          Assign
+                        </button>
+
                         <button className="text-blue-600 hover:text-blue-800">
                           <Pencil size={18} />
                         </button>

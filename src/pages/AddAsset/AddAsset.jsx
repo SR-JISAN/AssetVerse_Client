@@ -53,13 +53,13 @@ const AddAsset = () => {
       const newAsset = {
         productName: data.name,
         productType: data.type,
-        availableQuantity: data.quantity,
+        availableQuantity:parseInt(data.quantity) ,
         productImage: res.data.data.url,
         dateAdded: new Date().toISOString().split("T")[0],
         hrEmail: user?.email,
         companyName: users?.companyName,
       };
-
+ console.log(newAsset)
       if (users?.role !== "HR-Manager") {
         Swal.fire("Access Denied", "Only HR can add assets", "error");
         return;
