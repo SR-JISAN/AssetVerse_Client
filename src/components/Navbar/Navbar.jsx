@@ -1,30 +1,36 @@
 import { Building2, Logs, X } from 'lucide-react';
 import React, { useContext, useState } from 'react';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router';
+import { Link, Navigate, NavLink, useLocation} from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const [menu,setMenu]= useState(false)
-  const { user, singOutUser } = useContext(AuthContext);
+  const { user, singOutUser,dbUser } = useContext(AuthContext);
   const location = useLocation();
-  const navigate = useNavigate();
    const link = (
      <>
        <NavLink to="/">
          <li>Home</li>
        </NavLink>
-       <NavLink to="/asset-list">
-         <li> Asset List</li>
-       </NavLink>
-       <NavLink to="/add-asset">
-         <li>Add Asset </li>
-       </NavLink>
-       <NavLink to="/all-asset-request">
-         <li>All Asset Request</li>
-       </NavLink>
-       <NavLink to="/employee-management">
-         <li>Employee Management</li>
+       {dbUser?.role === "HR-Manager" && (
+         <>
+           <NavLink to="/asset-list">
+             <li> Asset List</li>
+           </NavLink>
+           <NavLink to="/add-asset">
+             <li>Add Asset </li>
+           </NavLink>
+           <NavLink to="/all-asset-request">
+             <li>All Asset Request</li>
+           </NavLink>
+           <NavLink to="/employee-management">
+             <li>Employee Management</li>
+           </NavLink>
+         </>
+       )}
+       <NavLink to="/Assets">
+         <li>Assets</li>
        </NavLink>
        {!user && (
          <>
@@ -51,8 +57,7 @@ const Navbar = () => {
             timerProgressBar: true,
             showConfirmButton: false,
           });
-          const from = location.state?.from?.pathname || "/";
-          navigate(from, { replace: true });
+         <Navigate state={location?.pathname} to="/employee-Login"></Navigate>;
         }
       })
       .catch((err) => {

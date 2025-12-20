@@ -11,6 +11,7 @@ import AssetList from '../pages/AssetList/AssetList';
 import AddAsset from '../pages/AddAsset/AddAsset';
 import AllAssetRequest from '../pages/AllAssetRequest/AllAssetRequest';
 import PrivateRoute from '../PrivateRouters/PrivateRoute';
+import AdminRouter from '../PrivateRouters/AdminRouter';
 
 
 
@@ -32,15 +33,27 @@ import PrivateRoute from '../PrivateRouters/PrivateRoute';
          },
          {
            path: "/asset-list",
-           element: <PrivateRoute><AssetList></AssetList></PrivateRoute>,
+           element: <AdminRouter>    
+              <PrivateRoute>
+                  <AssetList></AssetList>
+              </PrivateRoute>
+            </AdminRouter>
          },
          {
            path: "/add-asset",
-           element: <PrivateRoute><AddAsset></AddAsset></PrivateRoute>,
+           element:<AdminRouter>
+                     <PrivateRoute>
+                         <AddAsset></AddAsset>
+                     </PrivateRoute>
+                    </AdminRouter>,
          },
          {
            path: "/all-asset-request",
-           element: <PrivateRoute><AllAssetRequest></AllAssetRequest></PrivateRoute>,
+           element:<AdminRouter>
+              <PrivateRoute>
+                 <AllAssetRequest></AllAssetRequest>
+              </PrivateRoute>,
+           </AdminRouter> 
          },
          {
            path: "/employee-management",
