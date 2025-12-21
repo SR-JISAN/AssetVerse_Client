@@ -13,6 +13,7 @@ import AllAssetRequest from '../pages/AllAssetRequest/AllAssetRequest';
 import PrivateRoute from '../PrivateRouters/PrivateRoute';
 import AdminRouter from '../PrivateRouters/AdminRouter';
 import Assets from '../pages/Assets/Assets';
+import MyAssets from '../pages/MyAssets/MyAssets';
 
 
 
@@ -67,6 +68,12 @@ import Assets from '../pages/Assets/Assets';
          {
            path: "/assets",
            element: <Assets></Assets>,
+         },
+         {
+           path: "/my-asset",
+           element: <PrivateRoute>
+               <MyAssets></MyAssets>
+            </PrivateRoute>,
          },
          {
            path: "/register",

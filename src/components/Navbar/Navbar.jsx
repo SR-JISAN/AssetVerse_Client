@@ -4,6 +4,7 @@ import { Link, Navigate, NavLink, useLocation} from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import Swal from 'sweetalert2';
 
+
 const Navbar = () => {
   const [menu,setMenu]= useState(false)
   const { user, singOutUser,dbUser } = useContext(AuthContext);
@@ -23,6 +24,9 @@ const Navbar = () => {
            </NavLink>
            <NavLink to="/all-asset-request">
              <li>All Asset Request</li>
+           </NavLink>
+           <NavLink to="/my-asset">
+             <li>My Asset</li>
            </NavLink>
            <NavLink to="/employee-management">
              <li>Employee Management</li>
