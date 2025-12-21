@@ -136,8 +136,8 @@ const AssetList = () => {
    }
 
    const assignedAssetData = {
-     assetId: asset._id.toString(),
-     employeeEmail: "employee@email.com", // replace with actual employee
+     assetId: asset._id,
+     employeeEmail: "employee@email.com",
      employeeName: "Employee Name",
      hrEmail: asset.hrEmail,
      companyName: asset.companyName,
