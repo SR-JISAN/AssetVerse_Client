@@ -4,7 +4,6 @@ import Loading from '../pages/Loading/Loading';
 
 const AdminRouter = ({children}) => {
     const {dbUser,loading}= useContext(AuthContext);
-    console.log(dbUser.role)
     if(loading){
         return<Loading></Loading>
     }

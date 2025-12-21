@@ -29,7 +29,7 @@ const Navbar = () => {
            </NavLink>
          </>
        )}
-       <NavLink to="/Assets">
+       <NavLink to="/assets">
          <li>Assets</li>
        </NavLink>
        {!user && (

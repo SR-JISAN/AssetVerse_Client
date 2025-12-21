@@ -50,7 +50,8 @@ const AssetList = () => {
 
       const assignedAssetsMutation = useMutation({
         mutationFn: async (assetsData) => {
-          await axiosUrl.post("/assignedAssets", assetsData);
+         const res = await axiosUrl.post("/assignedAssets", assetsData);
+          return res.data;
         },
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["assets"] });
@@ -112,38 +113,50 @@ const AssetList = () => {
        }
      };
   
-  const handleAssign = async (asset)=>{
-         const result = await Swal.fire({
-           title: "Are you sure?",
-           text: "You won't be able to revert this!",
-           icon: "warning",
-           showCancelButton: true,
-           confirmButtonColor: "#3085d6",
-           cancelButtonColor: "#d33",
-           confirmButtonText: "Yes, Assign!",
-         });
-        
-         if (!result.isConfirmed) return;
+ const handleAssign = async (asset) => {
+   const result = await Swal.fire({
+     title: "Are you sure?",
+     text: "You won't be able to revert this!",
+     icon: "warning",
+     showCancelButton: true,
+     confirmButtonColor: "#3085d6",
+     cancelButtonColor: "#d33",
+     confirmButtonText: "Yes, Assign!",
+   });
 
-  const assignedAssetData = {
-    assetId: asset._id,
-    assetName: asset.productName,
-    assetImage: asset.productImage,
-    assetType: asset.productType,
+   if (!result.isConfirmed) return;
 
-    employeeEmail: "employee@email.com",
-    employeeName: "Employee Name",
+   if (!asset._id) {
+     Swal.fire({
+       icon: "error",
+       title: "Error",
+       text: "Asset ID missing!",
+     });
+     return;
+   }
 
-    hrEmail: asset.hrEmail,
-    companyName: asset.companyName,
+   const assignedAssetData = {
+     assetId: asset._id.toString(),
+     employeeEmail: "employee@email.com", // replace with actual employee
+     employeeName: "Employee Name",
+     hrEmail: asset.hrEmail,
+     companyName: asset.companyName,
+   };
 
-    assignmentDate: new Date(),
-    returnDate: null,
-    status: "assigned",
-  };
+   try {
+     await assignedAssetsMutation.mutateAsync(assignedAssetData);
+   } catch (error) {
+     console.error("Assign failed:", error);
+   }
+   console.log("Assigning asset:", {
+     assetId: asset._id,
+     employeeEmail: "employee@email.com",
+     employeeName: "Employee Name",
+     hrEmail: asset.hrEmail,
+     companyName: asset.companyName,
+   });
+ };
 
-  assignedAssetsMutation.mutate(assignedAssetData);
-};
 
 
     return (
@@ -203,11 +216,16 @@ const AssetList = () => {
                     <td className="p-3">
                       <div className="flex justify-center gap-3">
                         <button
-                          disabled={asset.availableQuantity === 0}
+                          disabled={
+                            asset.availableQuantity === 0 ||
+                            assignedAssetsMutation.isPending
+                          }
                           onClick={() => handleAssign(asset)}
-                          className="bg-red-500 text-white px-2 py-1 rounded"
+                          className="bg-red-500 text-white px-2 py-1 rounded disabled:opacity-50"
                         >
-                          Assign
+                          {assignedAssetsMutation.isPending
+                            ? "Assigning..."
+                            : "Assign"}
                         </button>
 
                         <button className="text-blue-600 hover:text-blue-800">

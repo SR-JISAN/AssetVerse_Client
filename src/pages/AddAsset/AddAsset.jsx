@@ -59,7 +59,7 @@ const AddAsset = () => {
         hrEmail: user?.email,
         companyName: users?.companyName,
       };
- console.log(newAsset)
+
       if (users?.role !== "HR-Manager") {
         Swal.fire("Access Denied", "Only HR can add assets", "error");
         return;

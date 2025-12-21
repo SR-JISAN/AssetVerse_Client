@@ -12,6 +12,7 @@ import AddAsset from '../pages/AddAsset/AddAsset';
 import AllAssetRequest from '../pages/AllAssetRequest/AllAssetRequest';
 import PrivateRoute from '../PrivateRouters/PrivateRoute';
 import AdminRouter from '../PrivateRouters/AdminRouter';
+import Assets from '../pages/Assets/Assets';
 
 
 
@@ -62,6 +63,10 @@ import AdminRouter from '../PrivateRouters/AdminRouter';
          {
            path: "/employee-Login",
            element: <EmployeeLogin></EmployeeLogin>,
+         },
+         {
+           path: "/assets",
+           element: <Assets></Assets>,
          },
          {
            path: "/register",
