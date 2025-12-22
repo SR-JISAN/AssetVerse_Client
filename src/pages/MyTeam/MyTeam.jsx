@@ -57,7 +57,7 @@ const MyTeam = () => {
    if (!dbUser?.email) return <Loading />;
 console.log(team);
     return (
-      <>
+      <div className='mw py-7'>
         {/* Company Select */}
         <motion.select
           className="select select-bordered mb-6"
@@ -141,7 +141,7 @@ console.log(team);
             ))}
           </AnimatePresence>
         </motion.div>
-      </>
+      </div>
     );
 };
 

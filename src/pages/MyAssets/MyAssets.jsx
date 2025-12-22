@@ -58,7 +58,7 @@ const handleReturn = async (id) => {
    };
 
     return (
-      <div>
+      <div className='mw py-10'>
         <motion.div
           className="flex gap-4 mb-4"
           variants={controlVariants}

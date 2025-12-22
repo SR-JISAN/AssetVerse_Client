@@ -172,7 +172,8 @@ const AllAssetRequest = () => {
        };
 
     return (
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mw py-10">
+        <h1 className="text-center text-2xl font bold my-3">All Assets Requests</h1>
         <table className="table-auto border-collapse border border-gray-300 w-full">
           <thead>
             <tr className="bg-gray-100">
