@@ -12,8 +12,8 @@ import {
 import { GoogleAuthProvider } from "firebase/auth";
 import Loading from "../pages/Loading/Loading.jsx";
 import { auth } from "../firebase/firebase.init.js";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosUrl from "../hooks/useAxiosUrl.jsx";
 
 
 function ContextProvider({ children }) {
@@ -60,11 +60,14 @@ function ContextProvider({ children }) {
       unSubscribe();
     };
   }, []);
+  const axiosUrl=useAxiosUrl()
   const { data: dbUser, isLoading: roleLoading } = useQuery({
     queryKey: ["dbUser", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/users/${user.email}`);
+      const res = await axiosUrl.get(
+        `/users/${user.email}`
+      );
       return res.data;
     },
   });

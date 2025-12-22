@@ -15,6 +15,7 @@ import AdminRouter from '../PrivateRouters/AdminRouter';
 import Assets from '../pages/Assets/Assets';
 import MyAssets from '../pages/MyAssets/MyAssets';
 import MyTeam from '../pages/MyTeam/MyTeam';
+import Profile from '../pages/profile/profile';
 
 
 
@@ -80,6 +81,12 @@ import MyTeam from '../pages/MyTeam/MyTeam';
            path: "/my-team",
            element: <PrivateRoute>
                <MyTeam></MyTeam>
+            </PrivateRoute>,
+         },
+         {
+           path: "/my-profile",
+           element: <PrivateRoute>
+                  <Profile></Profile>
             </PrivateRoute>,
          },
          {
