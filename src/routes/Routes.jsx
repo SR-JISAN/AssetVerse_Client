@@ -6,7 +6,6 @@ import HrManagerLogin from '../pages/LogIn/HrManagerLogin';
 import Register from '../pages/Register/Register';
 import Home from '../pages/Home/Home';
 import NFPage from '../pages/ErrorPage/NFPage';
-import EmployeeManagement from '../components/EmployeeManagement/EmployeeManagement';
 import AssetList from '../pages/AssetList/AssetList';
 import AddAsset from '../pages/AddAsset/AddAsset';
 import AllAssetRequest from '../pages/AllAssetRequest/AllAssetRequest';
@@ -16,6 +15,10 @@ import Assets from '../pages/Assets/Assets';
 import MyAssets from '../pages/MyAssets/MyAssets';
 import MyTeam from '../pages/MyTeam/MyTeam';
 import Profile from '../pages/profile/profile';
+import EmployeeList from '../components/EmployeeList/EmployeeList';
+import Payment from '../components/Payment/Payment';
+
+
 
 
 
@@ -37,31 +40,44 @@ import Profile from '../pages/profile/profile';
          },
          {
            path: "/asset-list",
-           element: <AdminRouter>    
-              <PrivateRoute>
-                  <AssetList></AssetList>
-              </PrivateRoute>
-            </AdminRouter>
+           element: (
+             <AdminRouter>
+               <PrivateRoute>
+                 <AssetList></AssetList>
+               </PrivateRoute>
+             </AdminRouter>
+           ),
          },
          {
            path: "/add-asset",
-           element:<AdminRouter>
-                     <PrivateRoute>
-                         <AddAsset></AddAsset>
-                     </PrivateRoute>
-                    </AdminRouter>,
+           element: (
+             <AdminRouter>
+               <PrivateRoute>
+                 <AddAsset></AddAsset>
+               </PrivateRoute>
+             </AdminRouter>
+           ),
          },
          {
            path: "/all-asset-request",
-           element:<AdminRouter>
-              <PrivateRoute>
+           element: (
+             <AdminRouter>
+               <PrivateRoute>
                  <AllAssetRequest></AllAssetRequest>
-              </PrivateRoute>,
-           </AdminRouter> 
+               </PrivateRoute>
+               ,
+             </AdminRouter>
+           ),
          },
          {
-           path: "/employee-management",
-           element: <PrivateRoute><EmployeeManagement></EmployeeManagement></PrivateRoute>,
+           path: "/employeeList",
+           element: (
+             <AdminRouter>
+               <PrivateRoute>
+                 <EmployeeList></EmployeeList>
+               </PrivateRoute>
+             </AdminRouter>
+           ),
          },
          {
            path: "/employee-Login",
@@ -73,21 +89,35 @@ import Profile from '../pages/profile/profile';
          },
          {
            path: "/my-asset",
-           element: <PrivateRoute>
+           element: (
+             <PrivateRoute>
                <MyAssets></MyAssets>
-            </PrivateRoute>,
+             </PrivateRoute>
+           ),
          },
          {
-           path: "/my-team",
-           element: <PrivateRoute>
+           path: "/team/:companyName",
+           element: (
+             <PrivateRoute>
                <MyTeam></MyTeam>
-            </PrivateRoute>,
+             </PrivateRoute>
+           ),
          },
          {
            path: "/my-profile",
-           element: <PrivateRoute>
-                  <Profile></Profile>
-            </PrivateRoute>,
+           element: (
+             <PrivateRoute>
+               <Profile></Profile>
+             </PrivateRoute>
+           ),
+         },
+         {
+           path: "/paymentPage",
+           element: (
+             <PrivateRoute>
+               <Payment></Payment>
+             </PrivateRoute>
+           ),
          },
          {
            path: "/register",

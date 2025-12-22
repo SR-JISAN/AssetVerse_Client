@@ -13,12 +13,12 @@ const MyTeam = () => {
     const { data: companies = [] } = useQuery({
       queryKey: ["my-companies", dbUser?.email],
       queryFn: async () => {
-        const res = await axiosUrl.get(`/my-companies/${dbUser?.email}`);
+        const res = await axiosUrl.get(`/myCompanies/${dbUser?.email}`);
         return res.data;
       },
       enabled: !!dbUser?.email,
     });
-    
+    console.log(companies)
     const [selectedCompany, setSelectedCompany] = useState("");
     const { data: team = [], isLoading } = useQuery({
       queryKey: ["team", selectedCompany],
@@ -28,7 +28,7 @@ const MyTeam = () => {
       },
       enabled: !!selectedCompany,
     });
-   console.log(team)
+   
     const { data: birthdays = [] } = useQuery({
       queryKey: ["birthdays", selectedCompany],
       queryFn: async () => {
@@ -55,7 +55,7 @@ const MyTeam = () => {
      },
    };
    if (!dbUser?.email) return <Loading />;
-console.log(team);
+
     return (
       <div className='mw py-7'>
         {/* Company Select */}

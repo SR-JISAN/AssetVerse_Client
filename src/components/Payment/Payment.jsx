@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { AuthContext } from '../../Context/AuthContext';
+import { Link } from 'react-router';
 
 const Payment = () => {
+  const {dbUser}=useContext(AuthContext)
     const packages = [
       {
         name: "Basic",
@@ -57,39 +60,52 @@ const Payment = () => {
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {packages.map((pkg, index) => (
-                <motion.div
-                  key={pkg.name}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow flex flex-col"
-                >
-                  <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                  <p className="text-gray-500 mb-4">
-                    Employees: {pkg.employeeLimit}
-                  </p>
-                  <p className="text-blue-600 text-3xl font-bold mb-6">
-                    ${pkg.price}/Month
-                  </p>
+              {packages.map((pkg, index) => {
+                const isCurrentPackage = dbUser?.package === pkg.name; 
 
-                  <ul className="text-gray-600 mb-6 space-y-2 flex-1">
-                    {pkg.features.map((feature, i) => (
-                      <li
-                        key={i}
-                        className="before:content-['✔'] before:text-blue-600 before:mr-2"
+                return (
+                  <motion.div
+                    key={pkg.name}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                    className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow flex flex-col"
+                  >
+                    <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
+                    <p className="text-gray-500 mb-4">
+                      Employees: {pkg.employeeLimit}
+                    </p>
+                    <p className="text-blue-600 text-3xl font-bold mb-6">
+                      ${pkg.price}/Month
+                    </p>
+
+                    <ul className="text-gray-600 mb-6 space-y-2 flex-1">
+                      {pkg.features.map((feature, i) => (
+                        <li
+                          key={i}
+                          className="before:content-['✔'] before:text-blue-600 before:mr-2"
+                        >
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/paymentPage">
+                      <button
+                        disabled={isCurrentPackage}
+                        className={`mt-auto btn py-6 rounded-lg font-semibold transition-colors
+                      ${
+                        isCurrentPackage
+                          ? "bg-gray-400 cursor-not-allowed text-white"
+                          : "bg-linear-to-r from-blue-900 to-blue-600 text-white"
+                      }`}
                       >
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button className="mt-auto btn  bg-linear-to-r from-blue-900 to-blue-600 text-white py-6 rounded-lg font-semibold transition-colors">
-                    Get Started
-                  </button>
-                </motion.div>
-              ))}
+                        {isCurrentPackage ? "Current Package" : "Get Started"}
+                      </button>
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>

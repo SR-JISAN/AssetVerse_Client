@@ -4,19 +4,17 @@ import Loading from '../pages/Loading/Loading';
 import { Navigate, useLocation } from 'react-router';
 
 const PrivateRoute = ({children}) => {
-        const {user,loading}= useContext(AuthContext);
-        const location = useLocation()
-        if(loading){
-            return <Loading></Loading>
-        }
+        const { user, loading, dbUser } = useContext(AuthContext);
+        const location = useLocation();
 
-        if(user){
-            return children
-        }
+        if (loading) return <Loading />;
 
-     return (
-       <Navigate state={location?.pathname} to="/employee-Login"></Navigate>
-     );
+        
+        if (user && dbUser) return children;
+
+        return (
+          <Navigate state={{ from: location }} to="/employee-Login" replace />
+        );
 };
 
 export default PrivateRoute;

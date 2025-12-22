@@ -5,7 +5,7 @@ import bannerImg from "../../assets/banner.avif"
 
 const HeroBanner = () => {
     return (
-      <div>
+      <div className=''>
         <section className="relative w-full h-screen bg-gray-100">
           <div className="absolute inset-0">
             <img

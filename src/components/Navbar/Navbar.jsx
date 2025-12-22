@@ -14,6 +14,12 @@ const Navbar = () => {
        <NavLink to="/">
          <li>Home</li>
        </NavLink>
+       <NavLink to="/my-asset">
+         <li>My Asset</li>
+       </NavLink>
+       <NavLink to={`team/${dbUser?.companyName}`}>
+         <li>My Team</li>
+       </NavLink>
        {dbUser?.role === "HR-Manager" && (
          <>
            <NavLink to="/asset-list">
@@ -25,13 +31,7 @@ const Navbar = () => {
            <NavLink to="/all-asset-request">
              <li>All Asset Request</li>
            </NavLink>
-           <NavLink to="/my-asset">
-             <li>My Asset</li>
-           </NavLink>
-           <NavLink to="/my-team">
-             <li>My Team</li>
-           </NavLink>
-           <NavLink to="/employee-management">
+           <NavLink to="/employeeList">
              <li>My Employee </li>
            </NavLink>
          </>
@@ -86,7 +86,7 @@ const Navbar = () => {
               {menu ? (
                 <>
                   <X size={25} color="#3508d9" />
-                  <ul className="menu top-10 flex flex-col gap-5 absolute menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                  <ul className=" top-10 flex flex-col gap-5 absolute menu-sm  bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow">
                     {link}
                   </ul>
                 </>
@@ -112,7 +112,7 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img alt="Tailwind CSS Navbar component" src={dbUser?.photo} />
+                  <img alt="user photo" src={dbUser?.photo} />
                 </div>
               </div>
               <ul

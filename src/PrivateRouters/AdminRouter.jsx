@@ -7,8 +7,8 @@ const AdminRouter = ({children}) => {
     if(loading){
         return<Loading></Loading>
     }
-    if(dbUser?.role !== "HR-Manager"){
-        return <h1 className='text-2xl my-10 text-red-500 text-center font-bold'>UnAuthorized Access</h1>
+    if (!dbUser || dbUser.role !== "HR-Manager") {
+      return <Navigate to="/employee-Login" replace />;
     }
 
     return children

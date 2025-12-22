@@ -13,7 +13,7 @@ const MyAssets = () => {
 
     const [search, setSearch] = useState("");
     const [type, setType] = useState("");
-
+    
     const {
       data: assets = [],
       refetch,
@@ -58,7 +58,7 @@ const handleReturn = async (id) => {
    };
 
     return (
-      <div className='mw py-10'>
+      <div className="mw py-10">
         <motion.div
           className="flex gap-4 mb-4"
           variants={controlVariants}
@@ -139,7 +139,8 @@ const handleReturn = async (id) => {
                   </td>
                   <td>
                     {asset.status === "assigned" &&
-                      asset.assetType === "Returnable" && (
+                      asset.assetType === "Returnable" &&
+                      (
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.9 }}
