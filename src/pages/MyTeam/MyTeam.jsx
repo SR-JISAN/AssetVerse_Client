@@ -14,16 +14,18 @@ const MyTeam = () => {
       queryKey: ["my-companies", dbUser?.email],
       queryFn: async () => {
         const res = await axiosUrl.get(`/myCompanies/${dbUser?.email}`);
+        console.log(res);
         return res.data;
+
       },
       enabled: !!dbUser?.email,
     });
-    console.log(companies)
     const [selectedCompany, setSelectedCompany] = useState("");
     const { data: team = [], isLoading } = useQuery({
       queryKey: ["team", selectedCompany],
       queryFn: async () => {
         const res = await axiosUrl.get(`/team/${selectedCompany}`);
+        console.log("team nai",res)
         return res.data;
       },
       enabled: !!selectedCompany,

@@ -1,20 +1,21 @@
 import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { Trash2 } from "lucide-react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
+import useAxiosUrl from "../../hooks/useAxiosUrl";
 
 const EmployeeList = ({ companyName, maxEmployees }) => {
   const queryClient = useQueryClient();
+  const axiosUrl = useAxiosUrl()
 
   // Fetch employees
   const { data: employees = [], isLoading } = useQuery({
     queryKey: ["employees", companyName],
     queryFn: async () => {
-      const res = await axios.get(
-        `http://localhost:5000/employees/${companyName}`
+      const res = await axiosUrl.get(
+        `/employees/${companyName}`
       );
       return res.data;
     },
@@ -23,7 +24,7 @@ const EmployeeList = ({ companyName, maxEmployees }) => {
   // Remove employee mutation
   const removeMutation = useMutation({
     mutationFn: async (email) => {
-      return await axios.delete(`http://localhost:5000/employees/${email}`);
+      return await axiosUrl.delete(`/employees/${email}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["employees", companyName] });
